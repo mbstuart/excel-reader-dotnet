@@ -56,9 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InternalInterfaces\Parse\IExcelRowParser.cs" />
     <Compile Include="InternalInterfaces\Parse\IExcelTableParser.cs" />
     <Compile Include="Parse\ExcelParser.cs" />
     <Compile Include="ExcelUploader.cs" />
+    <Compile Include="Parse\ExcelRowParser.cs" />
     <Compile Include="Parse\ExcelTableParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

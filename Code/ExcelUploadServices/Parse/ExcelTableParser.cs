@@ -13,6 +13,13 @@ namespace ExcelUploadServices.Parse
 {
     internal class ExcelTableParser : IExcelTableParser
     {
+        private IExcelRowParser excelRowParser;
+
+        public ExcelTableParser(IExcelRowParser excelRowParser)
+        {
+            this.excelRowParser = excelRowParser;
+        }
+
         public ExcelTable ParseTable(XSSFWorkbook workbook, IName namedRange)
         {
             ExcelTable table = new ExcelTable();
@@ -32,36 +39,9 @@ namespace ExcelUploadServices.Parse
                 });
             }
 
-            table.Rows = this.GetRows(table.Columns, worksheet, startCell);
+            table.Rows = this.excelRowParser.ParseRows(table.Columns, worksheet, startCell);
 
             return table;
-        }
-
-        private List<ExcelRow> GetRows(List<ExcelColumn> columns, ISheet worksheet, CellRangeAddress startCell)
-        {
-            var rows =  new List<ExcelRow>();
-
-            int activeRowNumber = startCell.FirstRow + 1;
-
-            var currentRow = worksheet.GetRow(activeRowNumber);
-
-            while (currentRow != null)
-            {
-                var row = new ExcelRow();
-
-                foreach(var cell in currentRow)
-                {
-                    row.Add(cell.StringCellValue);
-                }
-
-                rows.Add(row);
-
-                activeRowNumber = activeRowNumber + 1;
-
-                currentRow = worksheet.GetRow(activeRowNumber);
-            }
-
-            return rows;
         }
     }
 }

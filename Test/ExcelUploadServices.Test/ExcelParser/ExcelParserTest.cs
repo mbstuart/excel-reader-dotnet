@@ -27,6 +27,7 @@
                 .Return(new ExcelTable());
 
             this.excelParser = new ExcelParser(excelTableParser);
+
         }
 
         [Test]

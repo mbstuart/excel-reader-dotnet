@@ -82,6 +82,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ExcelParser\ExcelParserTest.cs" />
+    <Compile Include="ExcelParser\ExcelRowParserTest.cs" />
     <Compile Include="ExcelParser\ExcelTableParserTest.cs" />
     <Compile Include="ExcelUploaderTest.cs" />
     <Compile Include="TestUtility.cs" />

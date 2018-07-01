@@ -1,9 +1,14 @@
 ﻿namespace ExcelUploadServices.Test.ExcelParser
 {
     using global::ExcelUploadServices.Parse;
+    using Interfaces.Models.Output;
+    using InternalInterfaces.Parse;
     using NPOI.SS.UserModel;
+    using NPOI.SS.Util;
     using NPOI.XSSF.UserModel;
     using NUnit.Framework;
+    using Rhino.Mocks;
+    using System.Collections.Generic;
     using System.IO;
 
     [TestFixture]
@@ -12,6 +17,8 @@
 
         private ExcelTableParser excelTableParser;
 
+        private IExcelRowParser excelRowParser;
+
         private XSSFWorkbook workbook;
 
         private IName name;
@@ -19,7 +26,19 @@
         [SetUp]
         protected void SetUp()
         {
-            this.excelTableParser = new ExcelTableParser();
+            this.excelRowParser = MockRepository.GenerateStub<IExcelRowParser>();
+
+            this.excelRowParser
+                .Stub(rowParser => rowParser.ParseRows(Arg<List<ExcelColumn>>.Is.Anything, Arg<ISheet>.Is.Anything, Arg<CellRangeAddress>.Is.Anything))
+                .Return(new List<ExcelRow>() {
+                    new ExcelRow() {
+                        
+                    },
+                    new ExcelRow(),
+                    new ExcelRow()
+                });
+
+            this.excelTableParser = new ExcelTableParser(this.excelRowParser);
 
             var excelBytes = TestUtility.RetrieveMockExcelBytes("MockExcel1.xlsx");
             MemoryStream tableStream = new MemoryStream(excelBytes);
@@ -46,16 +65,12 @@
         }
 
         [Test]
-        public void EachRowShouldHaveSameNumberOfCellsAsColumns()
+        public void RowCreationShouldBeDelegatedToRowParserClass()
         {
             var table = this.excelTableParser.ParseTable(this.workbook, this.name);
 
-            var columnCount = table.Columns.Count;
-            
-            foreach(var row in table.Rows)
-            {
-                Assert.AreEqual(columnCount, row.Count);
-            }
+            this.excelRowParser
+               .AssertWasCalled(rowParser => rowParser.ParseRows(Arg<List<ExcelColumn>>.Is.Anything, Arg<ISheet>.Is.Anything, Arg< CellRangeAddress>.Is.Anything));
         }
     }
 }

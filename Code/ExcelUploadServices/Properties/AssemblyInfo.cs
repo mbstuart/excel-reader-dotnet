@@ -19,7 +19,11 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 [assembly: InternalsVisibleTo("ExcelUploadServices.Test")]
-[assembly: InternalsVisibleTo("ExcelUploadServices.Test.Parse")]
+[assembly: InternalsVisibleTo("Rhino.Mocks")]
+[assembly: InternalsVisibleTo("NUnit.Framework")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+
+
 
 
 

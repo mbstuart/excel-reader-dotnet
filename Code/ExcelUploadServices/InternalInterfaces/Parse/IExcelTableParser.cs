@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ExcelUploadServices.InternalInterfaces.Parse
 {
-    public interface IExcelTableParser
+    internal interface IExcelTableParser
     {
         ExcelTable ParseTable(XSSFWorkbook workbook, IName namedRange);
     }

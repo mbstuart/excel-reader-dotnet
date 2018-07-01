@@ -13,6 +13,6 @@ namespace ExcelUploadServices.Interfaces.Models.Output
 
         public List<ExcelColumn> Columns { get; set; }
 
-        public List<List<object>> Rows { get; set; }
+        public List<ExcelRow> Rows { get; set; }
     }
 }

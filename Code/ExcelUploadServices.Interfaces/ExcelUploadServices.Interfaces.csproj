@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Models\Output\ExcelColumn.cs" />
     <Compile Include="Models\Output\ExcelParseOutput.cs" />
+    <Compile Include="Models\Output\ExcelRow.cs" />
     <Compile Include="Models\Output\ExcelTable.cs" />
     <Compile Include="Parse\IExcelParser.cs" />
     <Compile Include="IExcelUploader.cs" />

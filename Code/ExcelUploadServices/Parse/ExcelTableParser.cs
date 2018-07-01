@@ -37,9 +37,9 @@ namespace ExcelUploadServices.Parse
             return table;
         }
 
-        private List<List<object>> GetRows(List<ExcelColumn> columns, ISheet worksheet, CellRangeAddress startCell)
+        private List<ExcelRow> GetRows(List<ExcelColumn> columns, ISheet worksheet, CellRangeAddress startCell)
         {
-            var rows =  new List<List<object>>();
+            var rows =  new List<ExcelRow>();
 
             int activeRowNumber = startCell.FirstRow + 1;
 
@@ -47,7 +47,7 @@ namespace ExcelUploadServices.Parse
 
             while (currentRow != null)
             {
-                var row = new List<object>();
+                var row = new ExcelRow();
 
                 foreach(var cell in currentRow)
                 {

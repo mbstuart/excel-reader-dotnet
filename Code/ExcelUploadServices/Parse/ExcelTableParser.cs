@@ -11,7 +11,7 @@ using NPOI.SS.Util;
 
 namespace ExcelUploadServices.Parse
 {
-    public class ExcelTableParser : IExcelTableParser
+    internal class ExcelTableParser : IExcelTableParser
     {
         public ExcelTable ParseTable(XSSFWorkbook workbook, IName namedRange)
         {

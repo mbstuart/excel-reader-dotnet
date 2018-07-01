@@ -18,6 +18,10 @@ using System.Runtime.InteropServices;
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
+[assembly: InternalsVisibleTo("ExcelUploadServices.Test")]
+[assembly: InternalsVisibleTo("ExcelUploadServices.Test.Parse")]
+
+
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("87b3542c-6945-43ab-94e3-d4ca1b1b9709")]

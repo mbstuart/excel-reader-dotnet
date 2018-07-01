@@ -9,7 +9,7 @@
     using System.IO;
     using System.Text.RegularExpressions;
 
-    public class ExcelParser : IExcelParser
+    internal class ExcelParser : IExcelParser
     {
         private readonly Regex sheetIdentifierRegex = new Regex("TableId_[a-zA-Z0-9]*");
 

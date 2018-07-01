@@ -2,6 +2,8 @@
 
 A C# library for extracting data from xlsx files 
 
+This uses NPOI in order to read the XLSX file.
+
 #### Input excel
 Excels must have:
 1. One piece of tabular data per sheet
